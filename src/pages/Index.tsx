@@ -64,12 +64,28 @@ const Index = () => {
     setCart((prev) => [...prev, productId]);
   };
 
+  const removeFromCart = (index: number) => {
+    setCart((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const removeFromCart = (index: number) => {
+    setCart((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const toggleFavorite = (productId: number) => {
     setFavorites((prev) =>
       prev.includes(productId)
         ? prev.filter((id) => id !== productId)
         : [...prev, productId],
     );
+  };
+
+  const removeFromFavorites = (productId: number) => {
+    setFavorites((prev) => prev.filter((id) => id !== productId));
+  };
+
+  const removeFromFavorites = (productId: number) => {
+    setFavorites((prev) => prev.filter((id) => id !== productId));
   };
 
   return (
@@ -148,6 +164,14 @@ const Index = () => {
                               {product.price.toLocaleString()} ₽
                             </p>
                           </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => removeFromFavorites(id)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <Icon name="X" size={16} />
+                          </Button>
                         </div>
                       ) : null;
                     })
@@ -195,6 +219,14 @@ const Index = () => {
                                 {product.price.toLocaleString()} ₽
                               </p>
                             </div>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => removeFromCart(index)}
+                              className="text-red-500 hover:text-red-700"
+                            >
+                              <Icon name="X" size={16} />
+                            </Button>
                           </div>
                         ) : null;
                       })}
